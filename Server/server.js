@@ -66,6 +66,8 @@ cocoSsd.load().then( async model => {
             var canvas = createCanvas(image.width, image.height);
             var ctx = canvas.getContext('2d');
 
+
+
             //canvas.width = 720;
             //canvas.height = 480;
 
@@ -76,7 +78,7 @@ cocoSsd.load().then( async model => {
             res.send(JSON.stringify(pred));
 
             ctx.beginPath();
-            ctx.font = 'bold 20px Menlo';
+            ctx.font = 'bold 15pt Sans';
             for(const ob of pred){
                 //Boundingbox
                 ctx.rect(ob.bbox[0], ob.bbox[1], ob.bbox[2], ob.bbox[3]);
@@ -85,7 +87,7 @@ cocoSsd.load().then( async model => {
                 //text box
                 ctx.fillStyle = "#EF6C00";
                 let txtw = ctx.measureText(ob.class).width
-                ctx.fillRect(ob.bbox[0] - 2, ob.bbox[1]  - 20, txtw + 4, 20);
+                ctx.fillRect(ob.bbox[0] - 2, ob.bbox[1]  - 20, txtw + 6, 20);
                 //text
                 ctx.fillStyle = "#00314e";
                 ctx.fillText(ob.class, ob.bbox[0] + 1, ob.bbox[1] - 3)
