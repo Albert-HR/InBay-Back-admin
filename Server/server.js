@@ -11,7 +11,11 @@ const port = 3000;
 function filter_predictions(predictions) {
     var i = predictions.length;
     while (i--) {
-        if(predictions[i].class != "person") {
+        if(predictions[i].class != "truck" && 
+           predictions[i].class != "bus" && 
+           predictions[i].class != "car" &&
+           predictions[i].class != "motorcycle" &&
+           predictions[i].class != "bicycle") {
             predictions.splice(i, 1);
         } 
     }
