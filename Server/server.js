@@ -78,11 +78,6 @@ cocoSsd.load().then( async model => {
             filter_predictions(pred);
             res.send(JSON.stringify(pred));
 
-            if(pred.length) {
-                await changeCamera();
-                await changeCamera();
-            }
-
             ctx.beginPath();
             ctx.font = 'bold 45pt DejaVu Sans';
             for(const ob of pred){
@@ -104,6 +99,11 @@ cocoSsd.load().then( async model => {
             fs.writeFileSync(`./image.${type}`, buffer)
 
             uploadFile(`./image.${type}`,type);
+
+            if(pred.length) {
+                await changeCamera();
+                await changeCamera();
+            }
         }
         image.src = `data:image/${type};base64,` + img;
 	});
