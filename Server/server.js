@@ -84,7 +84,7 @@ cocoSsd.load().then( async model => {
             }
 
             ctx.beginPath();
-            ctx.font = 'bold 15pt Sans';
+            ctx.font = 'bold 45pt DejaVu Sans';
             for(const ob of pred){
                 //Boundingbox
                 ctx.rect(ob.bbox[0], ob.bbox[1], ob.bbox[2], ob.bbox[3]);
@@ -93,7 +93,7 @@ cocoSsd.load().then( async model => {
                 //text box
                 ctx.fillStyle = "#EF6C00";
                 let txtw = ctx.measureText(ob.class).width
-                ctx.fillRect(ob.bbox[0] - 2, ob.bbox[1]  - 20, txtw + 6, 20);
+                ctx.fillRect(ob.bbox[0] - 2, ob.bbox[1]  - 40, txtw + 6, 40);
                 //text
                 ctx.fillStyle = "#00314e";
                 ctx.fillText(ob.class, ob.bbox[0] + 1, ob.bbox[1] - 3)
