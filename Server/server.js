@@ -100,10 +100,9 @@ cocoSsd.load().then( async model => {
 
             uploadFile(`./image.${type}`,type);
 
-            if(pred.length) {
+            if(pred.length)
                 await changeCamera();
-                await changeCamera();
-            }
+
         }
         image.src = `data:image/${type};base64,` + img;
 	});
