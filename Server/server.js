@@ -29,6 +29,7 @@ if(admin.apps.length == 0)
 const storage = admin.storage().bucket();
 
 
+const db = admin.firestore();
 
 function filter_predictions(predictions) {
     var i = predictions.length;
@@ -77,6 +78,11 @@ cocoSsd.load().then( async model => {
             filter_predictions(pred);
             res.send(JSON.stringify(pred));
 
+            if(pred.length) {
+                await changeCamera();
+                await changeCamera();
+            }
+
             ctx.beginPath();
             ctx.font = 'bold 15pt Sans';
             for(const ob of pred){
@@ -106,6 +112,19 @@ cocoSsd.load().then( async model => {
 			console.log("coco server running in port: 3000");
 	});
 });
+
+const changeCamera = async() => {
+    await db.collection('Camaras')
+    .get('4xIcMnNnNARqaCPHCZBz')
+    .then((snapshot) => {
+        for(o of snapshot.docs) {
+            o.ref.update({
+                'detectCamera': !o.data().detectCamera
+            });
+        }
+    }); 
+}
+
 
 const uploadFile = async(image, type) => {
 
